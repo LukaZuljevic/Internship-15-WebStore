@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
 import { fetchProducts } from "../../api/productsApi";
 import { Product } from "../../types/product";
-import Skeleton from "react-loading-skeleton";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import { ProductCard } from "../../components/ProductCard/ProductCard";
 
 export const ProductPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    setLoading(true);
-
     fetchProducts()
       .then((products: Product[]) => {
         setProducts(products);
@@ -19,18 +19,18 @@ export const ProductPage = () => {
   }, []);
 
   return (
-    <>
+    <div className="products-page">
       {loading ? (
-        <Skeleton />
+        <SkeletonTheme baseColor="#f4f4f9" highlightColor="#f0f0f5">
+          <Skeleton count={7} height={60} style={{ margin: "1rem 0" }} />
+        </SkeletonTheme>
       ) : (
-        <>
-          <ul>
-            {products.map((product: Product) => (
-              <li key={product.id}>{product.title}</li>
-            ))}
-          </ul>
-        </>
+        <ul className="products-list">
+          {products.map((product: Product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </ul>
       )}
-    </>
+    </div>
   );
 };

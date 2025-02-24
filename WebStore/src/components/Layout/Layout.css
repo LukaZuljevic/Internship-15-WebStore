@@ -1,8 +1,9 @@
 .page {
   display: flex;
   flex-direction: column;
+  background-color: rgb(244, 244, 249);
   min-height: 100vh;
-  background-color: #f4f4f9;
+  position: relative;
 }
 
 .page::before {
