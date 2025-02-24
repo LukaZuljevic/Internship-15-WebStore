@@ -1,0 +1,30 @@
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(52, 73, 94);
+  box-shadow: 0px 5px 5px rgb(52, 73, 94);
+  height: 10vh;
+  color: white;
+  padding: 0px 30px;
+}
+
+.navigation__title {
+  font-size: 36px;
+}
+
+.navigation__list {
+  display: flex;
+  list-style: none;
+  font-weight: bold;
+  gap: 30px;
+}
+
+.navigation__list li {
+  cursor: pointer;
+}
+
+.navigation__list li:hover {
+  text-decoration: underline;
+  transform: scale(1.1);
+}
