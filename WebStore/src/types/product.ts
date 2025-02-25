@@ -1,8 +1,8 @@
 export enum productCategories {
-  "electronics",
-  "jewelery",
-  "men's clothing",
-  "women's clothing",
+  Electronics = "electronics",
+  Jewelery = "jewelery",
+  Men_clothing = "men's clothing",
+  Women_clothing = "women's clothing",
 }
 
 export type Product = {
