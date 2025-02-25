@@ -5,16 +5,13 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { ProductCard } from "../../components/ProductCard/ProductCard";
 
-export const ProductPage = () => {
+export const ProductsPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     fetchProducts()
-      .then((products: Product[]) => {
-        setProducts(products);
-        console.log(products);
-      })
+      .then((products: Product[]) => setProducts(products))
       .finally(() => setLoading(false));
   }, []);
 

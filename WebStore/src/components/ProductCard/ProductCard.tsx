@@ -1,12 +1,20 @@
 import { Product } from "../../types/product";
+import { useNavigate } from "react-router-dom";
 
 type ProductCardProps = {
   product: Product;
 };
 
 export const ProductCard = ({ product }: ProductCardProps) => {
+  const navigate = useNavigate();
+
   return (
-    <div className="product-card">
+    <div
+      onClick={() => {
+        navigate(`/product/${product.id}`, { state: { product } });
+      }}
+      className="product-card"
+    >
       <img
         className="product-card__image"
         src={product.image}
