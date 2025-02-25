@@ -1,0 +1,18 @@
+input[name="search-filter"] {
+  width: 250px;
+  padding: 10px 15px;
+  margin: 10px 0;
+  border: 1px solid rgba(128, 128, 128, 0.295);
+  border-radius: 5px;
+  font-size: 18px;
+  outline: none;
+}
+
+input[name="search-filter"]:focus {
+  border-color: rgb(52, 73, 94);
+}
+
+input[name="search-filter"]::placeholder {
+  color: #888;
+  font-style: italic;
+}

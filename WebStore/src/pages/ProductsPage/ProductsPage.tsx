@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { fetchProducts } from "../../api/productsApi";
 import { Product } from "../../types/product";
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import ClipLoader from "react-spinners/ClipLoader";
 import "react-loading-skeleton/dist/skeleton.css";
 import { ProductCard } from "../../components/ProductCard/ProductCard";
 import { SearchFilter } from "../../components/Filters/SearchFilter/SearchFilter";
@@ -43,9 +43,9 @@ export const ProductsPage = () => {
   return (
     <div className="products-page">
       {loading ? (
-        <SkeletonTheme baseColor="#f4f4f9" highlightColor="#f0f0f5">
-          <Skeleton count={7} height={60} style={{ margin: "1rem 0" }} />
-        </SkeletonTheme>
+        <div className="clip-loader">
+          <ClipLoader size={150} />
+        </div>
       ) : (
         <>
           <div className="filters">

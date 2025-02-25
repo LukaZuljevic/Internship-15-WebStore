@@ -6,6 +6,7 @@ import "./components/ProductCard/ProductCard.css";
 import "./pages/ProductsPage/ProductsPage.css";
 import "./components/Filters/CategoryFilter/CategoryFilter.css";
 import "./components/Filters/SearchFilter/SearchFilter.css";
+import "./components/Filters/Filters.css";
 
 function App() {
   return <AppRouter />;

@@ -5,3 +5,11 @@
   gap: 12px;
   margin: 16px;
 }
+
+.clip-loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+}
