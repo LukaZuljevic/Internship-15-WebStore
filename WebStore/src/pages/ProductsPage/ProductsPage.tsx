@@ -24,15 +24,21 @@ export const ProductsPage = () => {
       .finally(() => setLoading(false));
   }, []);
 
-  const filterByCategory: Product[] = useMemo(() => {
-    if (category === "") return products;
+  const filter: Product[] = useMemo(() => {
+    if (!category && !search) return products;
 
-    return products.filter((product: Product) => product.category === category);
-  }, [category, products]);
+    return products.filter((product: Product) => {
+      const searchFilter = product.title
+        .toLowerCase()
+        .includes(search.toLowerCase());
+      const categoryFilter = category ? product.category === category : true;
+      return searchFilter && categoryFilter;
+    });
+  }, [category, search, products]);
 
   useEffect(() => {
-    setFilteredProducts(filterByCategory);
-  }, [filterByCategory]);
+    setFilteredProducts(filter);
+  }, [filter]);
 
   return (
     <div className="products-page">
@@ -43,7 +49,7 @@ export const ProductsPage = () => {
       ) : (
         <>
           <div className="filters">
-            <SearchFilter />
+            <SearchFilter setSearch={setSearch} />
             <CategoryFilter setCategory={setCategory} />
           </div>
           <ul className="products-list">
