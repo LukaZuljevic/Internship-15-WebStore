@@ -15,13 +15,19 @@ export const ProductsPage = () => {
   const [search, setSearch] = useState<string>("");
   const [category, setCategory] = useState<productCategories | "">("");
 
+  const storedProducts: Product[] = JSON.parse(
+    localStorage.getItem("products") || "[]"
+  );
+
   useEffect(() => {
     fetchProducts()
       .then((products: Product[]) => {
-        setProducts(products);
+        setProducts([...storedProducts, ...products]);
         setFilteredProducts(products);
       })
-      .finally(() => setLoading(false));
+      .finally(() => {
+        setLoading(false);
+      });
   }, []);
 
   const filter: Product[] = useMemo(() => {
@@ -53,7 +59,7 @@ export const ProductsPage = () => {
             <CategoryFilter setCategory={setCategory} />
           </div>
           <ul className="products-list">
-            {filteredProducts.map((product: Product) => (
+            {filteredProducts.slice(0, 20).map((product: Product) => (
               <ProductCard key={product.id} product={product} />
             ))}
           </ul>

@@ -3,12 +3,14 @@ import { CategoryFilter } from "../../components/Filters/CategoryFilter/Category
 import { productCategories } from "../../types/product";
 import { Input } from "../../components/Input/Input";
 import toast, { Toaster } from "react-hot-toast";
+import { Product } from "../../types/product";
+import { v4 as uuidv4 } from "uuid";
 
 type formDataType = {
   title: string;
   price: string;
   category: productCategories;
-  image: string;
+  image?: string;
 };
 
 export const AddNewProductPage = () => {
@@ -37,12 +39,14 @@ export const AddNewProductPage = () => {
       return;
     }
 
+    const productWithId: Product = { id: uuidv4(), ...formData };
+
     const storedProducts = localStorage.getItem("products");
-    const productsList: formDataType[] = storedProducts
+    const productsList: Product[] = storedProducts
       ? JSON.parse(storedProducts)
       : [];
 
-    productsList.push(formData);
+    productsList.push(productWithId);
     localStorage.setItem("products", JSON.stringify(productsList));
 
     formRef.current?.reset();

@@ -6,17 +6,17 @@ export enum productCategories {
 }
 
 export type Product = {
-  id: number;
+  id: string;
   title: string;
-  price: number;
+  price: string;
   category: productCategories;
   image?: string;
 };
 
 export type FetchedProduct = {
-  id: number;
+  id: string;
   title: string;
-  price: number;
+  price: string;
   category: productCategories;
   image?: string;
   description: string;
