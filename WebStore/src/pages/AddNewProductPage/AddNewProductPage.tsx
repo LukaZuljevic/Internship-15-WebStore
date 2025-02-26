@@ -39,7 +39,15 @@ export const AddNewProductPage = () => {
       return;
     }
 
-    const productWithId: Product = { id: uuidv4(), ...formData };
+    if (!formData.image) formData.image = "../src/assets/noImage.jpg";
+
+    const productWithId: Product = {
+      id: uuidv4(),
+      title: formData.title.trim(),
+      price: formData.price,
+      category: formData.category,
+      image: formData.image,
+    };
 
     const storedProducts = localStorage.getItem("products");
     const productsList: Product[] = storedProducts
@@ -69,8 +77,8 @@ export const AddNewProductPage = () => {
   }, [category]);
 
   const validateForm = () => {
-    if (!formData.title || !formData.category || !formData.image)
-      return "All fields required";
+    if (!formData.title.trim() || !formData.category)
+      return "Title, price and category fields required";
 
     const price = Number(formData.price);
     if (isNaN(price) || price <= 0)
@@ -91,6 +99,7 @@ export const AddNewProductPage = () => {
         name="image"
         value={formData.image}
         onChange={(e) => handleInputChange(e)}
+        required={false}
       />
       <Input
         type="text"
@@ -98,6 +107,7 @@ export const AddNewProductPage = () => {
         name="title"
         value={formData.title}
         onChange={(e) => handleInputChange(e)}
+        required={true}
       />
       <Input
         type="number"
@@ -105,6 +115,7 @@ export const AddNewProductPage = () => {
         name="price"
         value={formData.price}
         onChange={(e) => handleInputChange(e)}
+        required={true}
       />
       <CategoryFilter setCategory={setCategory} />
       <button type="submit">Submit</button>
