@@ -1,0 +1,32 @@
+#add-product-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  max-width: 500px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 15vh;
+  border: 2px solid rgb(52, 73, 94, 0.3);
+}
+
+button[type="submit"] {
+  background: rgb(52, 73, 94);
+  color: white;
+  font-size: 18px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background: rgb(41, 60, 80);
+}
+
+.form-title {
+  text-align: center;
+  color: rgb(31, 50, 70);
+}

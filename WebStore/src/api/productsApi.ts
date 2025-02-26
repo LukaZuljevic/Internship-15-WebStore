@@ -1,7 +1,7 @@
 import { Product, FetchedProduct } from "../types/product.ts";
 
 export const fetchProducts = (): Promise<Product[]> => {
-  return fetch("https://fakestoreapi.com/products?limit=15")
+  return fetch("https://fakestoreapi.com/products?limit=20")
     .then((response) => response.json())
     .then((data: FetchedProduct[]) => {
       const formattedProducts: Product[] = data.map(

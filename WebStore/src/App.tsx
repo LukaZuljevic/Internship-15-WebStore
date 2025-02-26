@@ -7,6 +7,8 @@ import "./pages/ProductsPage/ProductsPage.css";
 import "./components/Filters/CategoryFilter/CategoryFilter.css";
 import "./components/Filters/SearchFilter/SearchFilter.css";
 import "./components/Filters/Filters.css";
+import "./pages/AddNewProductPage/AddNewProductPage.css";
+import "./components/Input/Input.css";
 
 function App() {
   return <AppRouter />;
