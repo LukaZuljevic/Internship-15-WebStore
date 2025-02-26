@@ -1,7 +1,7 @@
-import { productCategories } from "../../../types/product";
+import { ProductCategories } from "../../../types/product";
 
 type CategoryFilterProps = {
-  setCategory: (category: productCategories) => void;
+  setCategory: (category: ProductCategories) => void;
 };
 
 export const CategoryFilter = ({ setCategory }: CategoryFilterProps) => {
@@ -9,7 +9,7 @@ export const CategoryFilter = ({ setCategory }: CategoryFilterProps) => {
     <select
       className="category-dropdown"
       name="category"
-      onChange={(e) => setCategory(e.target.value as productCategories)}
+      onChange={(e) => setCategory(e.target.value as ProductCategories)}
     >
       <option value="">Choose a category</option>
       <option value="electronics">Electronics</option>

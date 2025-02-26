@@ -1,26 +1,26 @@
 import { useEffect, useState, useRef } from "react";
 import { CategoryFilter } from "../../components/Filters/CategoryFilter/CategoryFilter";
-import { productCategories } from "../../types/product";
+import { ProductCategories } from "../../types/product";
 import { Input } from "../../components/Input/Input";
 import toast, { Toaster } from "react-hot-toast";
 import { Product } from "../../types/product";
 import { v4 as uuidv4 } from "uuid";
 
-type formDataType = {
+type ProductDataType = {
   title: string;
   price: string;
-  category: productCategories;
+  category: ProductCategories;
   image?: string;
 };
 
 export const AddNewProductPage = () => {
-  const [formData, setFormData] = useState<formDataType>({
+  const [formData, setFormData] = useState<ProductDataType>({
     title: "",
     price: "",
-    category: "" as productCategories,
+    category: "" as ProductCategories,
     image: "",
   });
-  const [category, setCategory] = useState<productCategories | "">("");
+  const [category, setCategory] = useState<ProductCategories | "">("");
   const formRef = useRef<HTMLFormElement>(null);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -54,7 +54,7 @@ export const AddNewProductPage = () => {
     setFormData({
       title: "",
       price: "",
-      category: "" as productCategories,
+      category: "" as ProductCategories,
       image: "",
     });
 
@@ -64,7 +64,7 @@ export const AddNewProductPage = () => {
   useEffect(() => {
     setFormData((prevFormData) => ({
       ...prevFormData,
-      ["category"]: category as productCategories,
+      ["category"]: category as ProductCategories,
     }));
   }, [category]);
 

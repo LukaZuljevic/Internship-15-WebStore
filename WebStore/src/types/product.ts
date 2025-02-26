@@ -1,15 +1,15 @@
-export enum productCategories {
-  Electronics = "electronics",
-  Jewelery = "jewelery",
-  Men_clothing = "men's clothing",
-  Women_clothing = "women's clothing",
+export enum ProductCategories {
+  ELECTORNICS = "electronics",
+  JEWELERY = "jewelery",
+  MEN_CLOTHING = "men's clothing",
+  WOMEN_CLOTHING = "women's clothing",
 }
 
 export type Product = {
   id: string;
   title: string;
   price: string;
-  category: productCategories;
+  category: ProductCategories;
   image?: string;
 };
 
@@ -17,7 +17,7 @@ export type FetchedProduct = {
   id: string;
   title: string;
   price: string;
-  category: productCategories;
+  category: ProductCategories;
   image?: string;
   description: string;
   rating: {

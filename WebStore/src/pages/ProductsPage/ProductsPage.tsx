@@ -6,14 +6,14 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { ProductCard } from "../../components/ProductCard/ProductCard";
 import { SearchFilter } from "../../components/Filters/SearchFilter/SearchFilter";
 import { CategoryFilter } from "../../components/Filters/CategoryFilter/CategoryFilter";
-import { productCategories } from "../../types/product";
+import { ProductCategories } from "../../types/product";
 
 export const ProductsPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [search, setSearch] = useState<string>("");
-  const [category, setCategory] = useState<productCategories | "">("");
+  const [category, setCategory] = useState<ProductCategories | "">("");
 
   const storedProducts: Product[] = JSON.parse(
     localStorage.getItem("products") || "[]"
