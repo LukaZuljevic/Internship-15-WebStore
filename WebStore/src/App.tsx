@@ -9,6 +9,7 @@ import "./components/Filters/SearchFilter/SearchFilter.css";
 import "./components/Filters/Filters.css";
 import "./pages/AddNewProductPage/AddNewProductPage.css";
 import "./components/Input/Input.css";
+import "./pages/404Page/404Page.css";
 
 function App() {
   return <AppRouter />;

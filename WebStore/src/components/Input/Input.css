@@ -11,6 +11,12 @@ form .category-dropdown {
   outline: none;
 }
 
+input[name="title"],
+input[name="price"],
+input[name="image"] {
+  font-style: italic;
+}
+
 input[name="title"]:focus,
 input[name="price"]:focus,
 input[name="image"]:focus,
