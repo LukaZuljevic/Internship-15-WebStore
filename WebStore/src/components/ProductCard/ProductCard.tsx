@@ -1,5 +1,7 @@
 import { Product } from "../../types/product";
 import { useNavigate } from "react-router-dom";
+import "./ProductCard.css";
+import { ROUTES } from "../../router/routes";
 
 type ProductCardProps = {
   product: Product;
@@ -11,7 +13,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <div
       onClick={() => {
-        navigate(`/product/${product.id}`, { state: { product } });
+        navigate(`${ROUTES.PRODUCT}/${product.id}`, { state: { product } });
       }}
       className="product-card"
     >

@@ -1,4 +1,5 @@
 import { ProductCategories } from "../../../types/productCategories";
+import "./CategoryFilter.css";
 
 type CategoryFilterProps = {
   setCategory: (category: ProductCategories) => void;

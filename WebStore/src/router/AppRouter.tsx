@@ -4,17 +4,18 @@ import { ProductsPage } from "../pages/ProductsPage/ProductsPage";
 import { ProductPage } from "../pages/ProductPage/ProductPage";
 import { AddNewProductPage } from "../pages/AddNewProductPage/AddNewProductPage";
 import { Page404 } from "../pages/404Page/404Page";
+import { ROUTES } from "./routes";
 
 export const AppRouter = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route path={ROUTES.HOME} element={<Layout />}>
           <Route index element={<ProductsPage />} />
-          <Route path="/product/:id" element={<ProductPage />} />
-          <Route path="/add-product" element={<AddNewProductPage />} />
+          <Route path={ROUTES.PRODUCT_DETAILS} element={<ProductPage />} />
+          <Route path={ROUTES.ADD_PRODUCT} element={<AddNewProductPage />} />
         </Route>
-        <Route path="*" element={<Page404 />} />
+        <Route path={ROUTES.NOT_FOUND} element={<Page404 />} />
       </Routes>
     </Router>
   );

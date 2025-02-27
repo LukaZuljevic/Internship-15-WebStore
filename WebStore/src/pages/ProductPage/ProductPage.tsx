@@ -4,6 +4,7 @@ import { useParams, useLocation } from "react-router-dom";
 import { fetchById, fetchProducts } from "../../api/productsApi";
 import ClipLoader from "react-spinners/ClipLoader";
 import { ProductCard } from "../../components/ProductCard/ProductCard";
+import "./ProductPage.css";
 
 export const ProductPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -14,23 +15,27 @@ export const ProductPage = () => {
     location.state?.product || null
   );
   const [loading, setLoading] = useState<boolean>(true);
-  const randomIndex = Math.floor(Math.random() * 10);
+  const [randomIndex] = useState(() => Math.floor(Math.random() * 10));
 
   useEffect(() => {
     setLoading(true);
 
     const fetchData = async () => {
-      const fetchedProduct = await fetchById(id);
+      try {
+        const fetchedProduct = await fetchById(id);
+        if (fetchedProduct) setProduct(fetchedProduct);
 
-      if (fetchedProduct) setProduct(fetchedProduct);
+        const products = await fetchProducts();
+        const productsWihoutMainProduct = products.filter(
+          (item: Product) => item.id !== fetchedProduct?.id
+        );
 
-      const products = await fetchProducts();
-      const productsWihoutMainProduct = products.filter(
-        (item: Product) => item.id !== fetchedProduct?.id
-      );
-      setProducts(productsWihoutMainProduct);
-
-      setLoading(false);
+        setProducts(productsWihoutMainProduct);
+      } catch (error) {
+        console.log("Error", error);
+      } finally {
+        setLoading(false);
+      }
     };
 
     fetchData();

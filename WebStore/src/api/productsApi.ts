@@ -1,10 +1,14 @@
 import { FetchedProduct } from "../types/fetchedProduct.ts";
 import { Product } from "../types/product.ts";
 
+const FAKE_STORE_API = "https://fakestoreapi.com";
+
 export const fetchProducts = (): Promise<Product[]> => {
-  return fetch("https://fakestoreapi.com/products?limit=20")
+  return fetch(`${FAKE_STORE_API}/products?limit=20`)
     .then((response) => response.json())
     .then((data: FetchedProduct[]) => {
+      if (!data) return [];
+
       const formattedProducts: Product[] = data.map(
         (product: FetchedProduct) => {
           return {
@@ -27,9 +31,11 @@ export const fetchProducts = (): Promise<Product[]> => {
 export const fetchById = (
   productId: string | undefined
 ): Promise<Product | null> => {
-  return fetch(`https://fakestoreapi.com/products/${productId}`)
+  return fetch(`${FAKE_STORE_API}/products/${productId}`)
     .then((response) => response.json())
     .then((data: FetchedProduct) => {
+      if (!data) return null;
+      
       const formattedProduct: Product = {
         id: data.id,
         title: data.title,

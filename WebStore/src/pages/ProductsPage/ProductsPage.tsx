@@ -7,30 +7,30 @@ import { ProductCard } from "../../components/ProductCard/ProductCard";
 import { SearchFilter } from "../../components/Filters/SearchFilter/SearchFilter";
 import { CategoryFilter } from "../../components/Filters/CategoryFilter/CategoryFilter";
 import { ProductCategories } from "../../types/productCategories";
+import "./ProductsPage.css";
+import "../../components/Filters/Filters.css";
+
+const PRODUCTS = "products";
 
 export const ProductsPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [search, setSearch] = useState<string>("");
   const [category, setCategory] = useState<ProductCategories | "">("");
 
-  const storedProducts: Product[] = JSON.parse(
-    localStorage.getItem("products") || "[]"
-  );
-
   useEffect(() => {
+    const storedProducts: Product[] = JSON.parse(
+      localStorage.getItem(`${PRODUCTS}`) || "[]"
+    );
+
     fetchProducts()
-      .then((products: Product[]) => {
-        setProducts([...storedProducts, ...products]);
-        setFilteredProducts(products);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+      .then((products: Product[]) =>
+        setProducts([...storedProducts, ...products])
+      )
+      .finally(() => setLoading(false));
   }, []);
 
-  const filter: Product[] = useMemo(() => {
+  const filteredProducts: Product[] = useMemo(() => {
     if (!category && !search) return products;
 
     return products.filter((product: Product) => {
@@ -41,10 +41,6 @@ export const ProductsPage = () => {
       return searchFilter && categoryFilter;
     });
   }, [category, search, products]);
-
-  useEffect(() => {
-    setFilteredProducts(filter);
-  }, [filter]);
 
   return (
     <div className="products-page">

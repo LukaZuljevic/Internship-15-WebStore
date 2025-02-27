@@ -1,4 +1,6 @@
 import { useState, useRef, useEffect } from "react";
+import "./SearchFilter.css";
+
 type SearchFilterProps = {
   setSearch: (search: string) => void;
 };

@@ -1,10 +1,11 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { CategoryFilter } from "../../components/Filters/CategoryFilter/CategoryFilter";
 import { ProductCategories } from "../../types/productCategories";
 import { Input } from "../../components/Input/Input";
 import toast, { Toaster } from "react-hot-toast";
 import { Product } from "../../types/product";
 import { v4 as uuidv4 } from "uuid";
+import "./AddNewProductPage.css";
 
 export const AddNewProductPage = () => {
   const [formData, setFormData] = useState<Product>({
@@ -17,12 +18,15 @@ export const AddNewProductPage = () => {
   const [category, setCategory] = useState<ProductCategories | "">("");
   const formRef = useRef<HTMLFormElement>(null);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [e.target.name]: e.target.value,
-    }));
-  };
+  const handleInputChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        [e.target.name]: e.target.value,
+      }));
+    },
+    []
+  );
 
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -92,7 +96,7 @@ export const AddNewProductPage = () => {
         type="url"
         placeholder="Enter a picture url..."
         name="image"
-        value={formData.image}
+        value={formData.image?.trim()}
         onChange={(e) => handleInputChange(e)}
         required={false}
       />

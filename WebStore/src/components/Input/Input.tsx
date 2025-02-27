@@ -1,8 +1,10 @@
+import "./Input.css";
+
 type InputProps = {
   type: string;
   placeholder: string;
   name: string;
-  value: any;
+  value: string | undefined;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   required: boolean;
 };
@@ -23,6 +25,6 @@ export const Input = ({
       value={value}
       onChange={onChange}
       required={required}
-    ></input>
+    />
   );
 };
