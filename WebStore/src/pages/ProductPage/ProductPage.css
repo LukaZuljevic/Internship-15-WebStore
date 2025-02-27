@@ -1,0 +1,38 @@
+.product-page {
+  max-width: 1200px;
+  margin: 32px auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.product-page__image {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.product-page h1 {
+  font-size: 24px;
+  margin: 10px 0;
+}
+
+.product-page p {
+  font-size: 18px;
+  color: gray;
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+.you-may-like-section h2 {
+  font-size: 36px;
+  color: rgb(52, 73, 94);
+  margin: 64px 0;
+}

@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Layout } from "./components/Layout/Layout";
-import { ProductsPage } from "./pages/ProductsPage/ProductsPage";
-import { ProductPage } from "./pages/ProductPage/ProductPage";
-import { AddNewProductPage } from "./pages/AddNewProductPage/AddNewProductPage";
-import { Page404 } from "./pages/404Page/404Page";
+import { Layout } from "../components/Layout/Layout";
+import { ProductsPage } from "../pages/ProductsPage/ProductsPage";
+import { ProductPage } from "../pages/ProductPage/ProductPage";
+import { AddNewProductPage } from "../pages/AddNewProductPage/AddNewProductPage";
+import { Page404 } from "../pages/404Page/404Page";
 
 export const AppRouter = () => {
   return (

@@ -8,8 +8,9 @@ export const SearchFilter = ({ setSearch }: SearchFilterProps) => {
   const searchFilter = useRef<HTMLInputElement>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
-    setSearch(e.target.value);
+    const searchValue = e.target.value;
+    setInputValue(searchValue);
+    setSearch(searchValue);
   };
 
   useEffect(() => {

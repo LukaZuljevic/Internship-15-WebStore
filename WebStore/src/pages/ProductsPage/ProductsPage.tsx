@@ -6,7 +6,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { ProductCard } from "../../components/ProductCard/ProductCard";
 import { SearchFilter } from "../../components/Filters/SearchFilter/SearchFilter";
 import { CategoryFilter } from "../../components/Filters/CategoryFilter/CategoryFilter";
-import { ProductCategories } from "../../types/product";
+import { ProductCategories } from "../../types/productCategories";
 
 export const ProductsPage = () => {
   const [products, setProducts] = useState<Product[]>([]);

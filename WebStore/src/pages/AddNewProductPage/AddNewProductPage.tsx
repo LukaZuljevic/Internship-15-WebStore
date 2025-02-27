@@ -1,20 +1,14 @@
 import { useEffect, useState, useRef } from "react";
 import { CategoryFilter } from "../../components/Filters/CategoryFilter/CategoryFilter";
-import { ProductCategories } from "../../types/product";
+import { ProductCategories } from "../../types/productCategories";
 import { Input } from "../../components/Input/Input";
 import toast, { Toaster } from "react-hot-toast";
 import { Product } from "../../types/product";
 import { v4 as uuidv4 } from "uuid";
 
-type ProductDataType = {
-  title: string;
-  price: string;
-  category: ProductCategories;
-  image?: string;
-};
-
 export const AddNewProductPage = () => {
-  const [formData, setFormData] = useState<ProductDataType>({
+  const [formData, setFormData] = useState<Product>({
+    id: "",
     title: "",
     price: "",
     category: "" as ProductCategories,
@@ -60,6 +54,7 @@ export const AddNewProductPage = () => {
     formRef.current?.reset();
 
     setFormData({
+      id: "",
       title: "",
       price: "",
       category: "" as ProductCategories,

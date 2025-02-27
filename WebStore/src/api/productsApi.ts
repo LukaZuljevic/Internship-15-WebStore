@@ -1,4 +1,5 @@
-import { Product, FetchedProduct } from "../types/product.ts";
+import { FetchedProduct } from "../types/fetchedProduct.ts";
+import { Product } from "../types/product.ts";
 
 export const fetchProducts = (): Promise<Product[]> => {
   return fetch("https://fakestoreapi.com/products?limit=20")
@@ -23,7 +24,9 @@ export const fetchProducts = (): Promise<Product[]> => {
     });
 };
 
-export const fetchById = (productId: string | undefined): Promise<Product | null> => {
+export const fetchById = (
+  productId: string | undefined
+): Promise<Product | null> => {
   return fetch(`https://fakestoreapi.com/products/${productId}`)
     .then((response) => response.json())
     .then((data: FetchedProduct) => {

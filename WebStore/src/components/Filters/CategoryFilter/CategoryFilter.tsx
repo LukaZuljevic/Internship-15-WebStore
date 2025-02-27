@@ -1,4 +1,4 @@
-import { ProductCategories } from "../../../types/product";
+import { ProductCategories } from "../../../types/productCategories";
 
 type CategoryFilterProps = {
   setCategory: (category: ProductCategories) => void;

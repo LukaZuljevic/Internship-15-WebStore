@@ -1,23 +1,36 @@
 import { useState, useEffect } from "react";
 import { Product } from "../../types/product";
 import { useParams, useLocation } from "react-router-dom";
-import { fetchById } from "../../api/productsApi";
+import { fetchById, fetchProducts } from "../../api/productsApi";
+import ClipLoader from "react-spinners/ClipLoader";
+import { ProductCard } from "../../components/ProductCard/ProductCard";
 
 export const ProductPage = () => {
   const { id } = useParams<{ id: string }>();
   const location = useLocation();
 
+  const [products, setProducts] = useState<Product[]>([]);
   const [product, setProduct] = useState<Product | null>(
     location.state?.product || null
   );
+  const [loading, setLoading] = useState<boolean>(true);
+  const randomIndex = Math.floor(Math.random() * 10);
 
   useEffect(() => {
-    if (!product) {
-      fetchById(id).then((fetchedProduct: Product | null) =>
-        setProduct(fetchedProduct)
+    const fetchData = async () => {
+      const fetchedProduct = await fetchById(id);
+      setProduct(fetchedProduct);
+
+      const products = await fetchProducts();
+      setProducts(
+        products.filter((item: Product) => item.id !== fetchedProduct?.id)
       );
-    }
-  }, []);
+
+      setLoading(false);
+    };
+
+    fetchData();
+  }, [id]);
 
   return (
     <div className="product-page">
@@ -29,6 +42,20 @@ export const ProductPage = () => {
       <h1>{product?.title}</h1>
       <p>{product?.category}</p>
       <p>€{product?.price}</p>
+      {loading ? (
+        <div className="clip-loader">
+          <ClipLoader size={150} />
+        </div>
+      ) : (
+        <div className="you-may-like-section">
+          <h2>You also may like</h2>
+          <ul className="products-list">
+            {products.slice(randomIndex, 20).map((product: Product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };
