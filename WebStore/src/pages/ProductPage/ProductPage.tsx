@@ -17,14 +17,18 @@ export const ProductPage = () => {
   const randomIndex = Math.floor(Math.random() * 10);
 
   useEffect(() => {
+    setLoading(true);
+
     const fetchData = async () => {
       const fetchedProduct = await fetchById(id);
-      setProduct(fetchedProduct);
+
+      if (fetchedProduct) setProduct(fetchedProduct);
 
       const products = await fetchProducts();
-      setProducts(
-        products.filter((item: Product) => item.id !== fetchedProduct?.id)
+      const productsWihoutMainProduct = products.filter(
+        (item: Product) => item.id !== fetchedProduct?.id
       );
+      setProducts(productsWihoutMainProduct);
 
       setLoading(false);
     };
