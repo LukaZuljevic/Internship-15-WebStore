@@ -16,6 +16,7 @@ export const ProductPage = () => {
   );
   const [loading, setLoading] = useState<boolean>(true);
   const [randomIndex] = useState(() => Math.floor(Math.random() * 10));
+  const fallbackImage = "../src/assets/noImage.jpg";
 
   useEffect(() => {
     setLoading(true);
@@ -45,7 +46,7 @@ export const ProductPage = () => {
     <div className="product-page">
       <img
         className="product-page__image"
-        src={product?.image}
+        src={product?.image || fallbackImage}
         alt={product?.title}
       />
       <h1>{product?.title}</h1>

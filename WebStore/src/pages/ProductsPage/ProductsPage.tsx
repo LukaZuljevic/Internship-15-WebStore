@@ -20,7 +20,7 @@ export const ProductsPage = () => {
 
   useEffect(() => {
     const storedProducts: Product[] = JSON.parse(
-      localStorage.getItem(`${PRODUCTS}`) || "[]"
+      localStorage.getItem(PRODUCTS) || "[]"
     );
 
     fetchProducts()

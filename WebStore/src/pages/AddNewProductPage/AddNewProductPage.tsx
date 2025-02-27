@@ -7,6 +7,8 @@ import { Product } from "../../types/product";
 import { v4 as uuidv4 } from "uuid";
 import "./AddNewProductPage.css";
 
+const PRODUCTS = "products";
+
 export const AddNewProductPage = () => {
   const [formData, setFormData] = useState<Product>({
     id: "",
@@ -37,8 +39,6 @@ export const AddNewProductPage = () => {
       return;
     }
 
-    if (!formData.image) formData.image = "../src/assets/noImage.jpg";
-
     const productWithId: Product = {
       id: uuidv4(),
       title: formData.title.trim(),
@@ -47,13 +47,13 @@ export const AddNewProductPage = () => {
       image: formData.image,
     };
 
-    const storedProducts = localStorage.getItem("products");
+    const storedProducts = localStorage.getItem(PRODUCTS);
     const productsList: Product[] = storedProducts
       ? JSON.parse(storedProducts)
       : [];
 
     productsList.push(productWithId);
-    localStorage.setItem("products", JSON.stringify(productsList));
+    localStorage.setItem(PRODUCTS, JSON.stringify(productsList));
 
     formRef.current?.reset();
 

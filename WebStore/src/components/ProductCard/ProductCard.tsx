@@ -9,7 +9,7 @@ type ProductCardProps = {
 
 export const ProductCard = ({ product }: ProductCardProps) => {
   const navigate = useNavigate();
-
+  const fallbackImage = "../src/assets/noImage.jpg";
   return (
     <div
       onClick={() => {
@@ -19,7 +19,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
     >
       <img
         className="product-card__image"
-        src={product.image}
+        src={product.image || fallbackImage}
         alt={product.title}
       />
       <h3>{product.title}</h3>
